@@ -1,17 +1,6 @@
-export interface TeamMemberDataType {
-  id: number;
-  role: string;
-  name: string;
-  description: string;
-  image: string;
-  socialLinks: {
-    icon: string;
-    link: string;
-  }[];
-  delay: string;
-}
+import { TeamMemberDataType } from "./teamMembersOneData";
 
-export const teamMembersOneData: TeamMemberDataType[] = [
+export const teamMembersThreeData: TeamMemberDataType[] = [
   {
     id: 1,
     role: "General Manager",
@@ -104,7 +93,7 @@ export const teamMembersOneData: TeamMemberDataType[] = [
     ],
     delay: ".9",
   },
-   {
+  {
     id: 5,
     role: "Sales Head",
     name: "MR.JAWAHAR",
