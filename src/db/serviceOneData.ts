@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 // src/db/serviceOneData.ts
 import {
   SolarPanelIcon,
@@ -10,12 +11,13 @@ import {
   SolarFencingIcon,
   SolarLanternIcon,
 } from "@/components/svg";
+import { ComponentType, SVGProps } from "react";
 
 export interface ServiceDataType {
   id: number | string;
   title: string;
   description: string;
-  icon: React.ComponentType;
+   icon: ComponentType<SVGProps<SVGSVGElement>> | string;
   link: string;
   delay: string;
   active?: boolean;

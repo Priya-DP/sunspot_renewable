@@ -35,8 +35,8 @@ export const menuData: MenuItemDataType[] = [
     title: "Services",
     link: "/service",
     submenu: [
+      // { title: "Services", link: "/service" },
       { title: "Services", link: "/service" },
-      { title: "Service Carousel", link: "/service-carousel" },
       { title: "Service Details", link: "/service-details" },
     ],
   },
