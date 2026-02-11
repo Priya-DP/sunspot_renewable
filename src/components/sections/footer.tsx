@@ -11,7 +11,7 @@ const contactInfo = [
   {
     icon: <SuEmail />,
     label: "Make a Quote",
-    value: "sunspotengineering@gmail.com ",
+    value: "sunspotengineering@gmail.com",
     link: "mailto:sunspotengineering@gmail.com",
   },
   {

@@ -6,7 +6,7 @@ import HeroOne from '@/components/sections/heros/heroOne'
 import MarqueOne from '@/components/sections/marques/marqueOne'
 import NewsLetter from '@/components/sections/newsLetter'
 import PartnersOne from '@/components/sections/partners/partnersOne'
-import PriceGridOne from '@/components/sections/pricing/priceGridOne'
+// import PriceGridOne from '@/components/sections/pricing/priceGridOne'
 import ProjectsOne from '@/components/sections/projects/projectsOne'
 import ServicesOne from '@/components/sections/services/servicesOne'
 import TeamesOne from '@/components/sections/teames/teamesOne'
@@ -24,7 +24,7 @@ const Home = () => {
             <ProjectsOne/>
             <TestimonialOne/>
             <TeamesOne/>
-            <PriceGridOne/>
+            {/* <PriceGridOne/> */}
             <FaqHomeOne/>
             <BlogsOne/>
             <NewsLetter/>

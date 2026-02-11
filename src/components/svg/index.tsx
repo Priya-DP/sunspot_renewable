@@ -1,5 +1,4 @@
 // src/components/svg/index.tsx
-import React from "react";
 
 export const SolarPanelIcon = () => {
   return (
