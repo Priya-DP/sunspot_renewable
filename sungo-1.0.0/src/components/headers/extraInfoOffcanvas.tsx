@@ -21,7 +21,7 @@ const ExtraInfoOffcanvas = () => {
                             <div className="offcanvas__top mb-5 d-flex justify-content-between align-items-center">
                                 <div className="offcanvas__logo">
                                     <Link to="/">
-                                        <img src="/img/logo/black-logo.svg" alt="logo-img" />
+                                          <img src="/img/logo/sunspot_logo.jpg" alt="logo-img" />
                                     </Link>
                                 </div>
                                 <div className="offcanvas__close">

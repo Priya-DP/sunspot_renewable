@@ -17,7 +17,7 @@ const HeaderOne = () => {
                             <div className="header-left">
                                 <div className="logo">
                                     <Link to="/" className="header-logo">
-                                        <img src="/img/logo/black-logo.svg" alt="logo-img" />
+                                          <img src="/img/logo/sunspot_logo.jpg" alt="logo-img" />
                                     </Link>
                                 </div>
                             </div>

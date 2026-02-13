@@ -18,7 +18,7 @@ const HeaderFour = () => {
                                         <img src="/img/logo/white-logo.svg" alt="logo-img" />
                                     </Link>
                                     <Link to="/" className="header-logo-2">
-                                        <img src="/img/logo/black-logo.svg" alt="logo-img" />
+                                          <img src="/img/logo/sunspot_logo.jpg" alt="logo-img" />
                                     </Link>
                                 </div>
                             </div>
