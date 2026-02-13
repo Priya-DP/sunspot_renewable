@@ -49,9 +49,9 @@ const ProjectsOne = () => {
                       <ProjectCard project={project} iconCalss="icon"/>
                     </SwiperSlide>
                 ))}
-                <div className="swiper-dot-2">
+                {/* <div className="swiper-dot-2">
                     <div className="dot-3" />
-                </div>
+                </div> */}
             </Swiper>
         </section >
 

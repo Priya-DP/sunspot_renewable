@@ -62,9 +62,9 @@ const ProjectsFive = () => {
               </SwiperSlide>
             ))}
           </Swiper>
-          <div className="swiper-dot-2">
+          {/* <div className="swiper-dot-2">
             <div className="dot-2" />
-          </div>
+          </div> */}
         </div>
       </div>
     </section>
