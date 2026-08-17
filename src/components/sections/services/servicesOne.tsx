@@ -1,11 +1,32 @@
-import { serviceOneData } from "@/db/serviceOneData";
+import { useState, useEffect } from "react";
+import { ServiceDataType } from "@/db/serviceOneData";
 import { Navigation } from "swiper/modules";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ServiceCard from "./serviceCard";
 import SectionTitle from "@/components/ui/sectionTitle";
-import { Link } from "react-router-dom";
+import { fetchServicesContent } from "@/lib/api";
 
 const ServicesOne = () => {
+  const [services, setServices] = useState<ServiceDataType[]>([]);
+
+  const loadServices = () => {
+    fetchServicesContent().then((data) => {
+      if (data && data.length > 0) {
+        setServices(data);
+      }
+    });
+  };
+
+  useEffect(() => {
+    loadServices();
+    const interval = setInterval(loadServices, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  if (services.length === 0) return null;
+
+  const swiperKey = services.map((s) => `${s.id}-${s.title}`).join('|');
+
   return (
     <section
       id="services"
@@ -23,38 +44,39 @@ const ServicesOne = () => {
           </SectionTitle>
           <div className="array-button">
             <button className="array-prev">
-              <i className="fa fa-arrow-right" />
+              <i className="fa-regular fa-arrow-left-long" />
             </button>
             <button className="array-next">
-              <i className="fa fa-arrow-left" />
+              <i className="fa-regular fa-arrow-right-long" />
             </button>
           </div>
         </div>
         <div className="service-wrapper">
           <Swiper
+            key={swiperKey}
             spaceBetween={30}
             speed={1500}
             loop
             autoplay={{
-              delay: 1500,
+              delay: 3000,
               disableOnInteraction: false,
             }}
             navigation={{
-              nextEl: ".array-prev",
-              prevEl: ".array-next",
+              nextEl: ".array-next",
+              prevEl: ".array-prev",
             }}
             breakpoints={{
               1199: {
                 slidesPerView: 4,
               },
               991: {
-                slidesPerView: 2,
+                slidesPerView: 3,
               },
               767: {
                 slidesPerView: 2,
               },
               575: {
-                slidesPerView: 2,
+                slidesPerView: 1,
               },
               0: {
                 slidesPerView: 1,
@@ -62,17 +84,12 @@ const ServicesOne = () => {
             }}
             modules={[Navigation]}
           >
-            {serviceOneData.map((service, index) => (
-              <SwiperSlide key={index}>
+            {services.map((service) => (
+              <SwiperSlide key={service.id}>
                 <ServiceCard service={service} />
               </SwiperSlide>
             ))}
           </Swiper>
-          <div className="service-text wow slideUp" data-delay=".4">
-            <h6>
-              Solar Power System. <Link to="/service">View Services </Link>
-            </h6>
-          </div>
         </div>
       </div>
     </section>

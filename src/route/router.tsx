@@ -5,6 +5,7 @@ import Blog from "@/pages/blog";
 import BlogDetails from "@/pages/blog-details";
 import BlogStandard from "@/pages/blog-standard";
 import Contact from "@/pages/contact";
+import AdminLoginRedirect from "@/pages/login";
 import Faq from "@/pages/faq";
 import Home from "@/pages/home";
 import HomeOneSingle from "@/pages/home-one-single";
@@ -100,6 +101,14 @@ export const router = createBrowserRouter([
       {
         path: "/contact",
         element: <Contact />,
+      },
+      {
+        path: "/login",
+        element: <AdminLoginRedirect />,
+      },
+      {
+        path: "/admin",
+        element: <AdminLoginRedirect />,
       },
     ],
   },

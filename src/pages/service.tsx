@@ -4,7 +4,7 @@ import ServicesFive from "@/components/sections/services/servicesFive"
 const Service = () => {
   return (
     <>
-      <PageTitle title="Services Carousel" currentPage="Services Carousel" />
+      <PageTitle title="Services" currentPage="Services Carousel" />
         <ServicesFive/>
     </>
   );

@@ -5,7 +5,7 @@ const contactInfo = [
   {
     icon: <SuCallMessage />,
     label: "Call Us 7/24",
-    value: "+91-9094179527/9103 ",
+    value: "+91-9094179527/9103545543 ",
     link: "tel:+919094179527",
   },
   {
@@ -63,7 +63,24 @@ const Footer = () => {
               className="contact-info-items wow slideUp"
               data-delay={`${0.3 + index * 0.2}`}
             >
-              <div className="icon">{info.icon}</div>
+              <div
+                className="icon"
+                style={{
+                  width: "70px",
+                  height: "70px",
+                  minWidth: "70px",
+                  borderRadius: "50%",
+                  border: "2px dashed #4CAF50",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  overflow: "visible",
+                  position: "relative",
+                  flexShrink: 0,
+                }}
+              >
+                {info.icon}
+              </div>
               <div className="content">
                 <p>{info.label}</p>
                 <h3>

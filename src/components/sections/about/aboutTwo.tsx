@@ -1,8 +1,51 @@
+import { useEffect, useState } from "react";
 import SectionTitle from "@/components/ui/sectionTitle";
-// import { Link } from "react-router-dom";
 import { SuMission, SuGoal } from "@/lib/icons";
+import { fetchAboutContent } from "@/lib/api";
+
+interface AboutType {
+  sectionSubtitle: string;
+  mainHeading: string;
+  description: string;
+  aboutImage1: string;
+  aboutImage2: string;
+  experienceYears: string;
+}
+
+const defaultAboutTwo: AboutType = {
+  sectionSubtitle: "About Us",
+  mainHeading: "Sunspot Renewable Engineering",
+  description: "SUNSPOT RENEWABLE ENGINEERING recognized leading solar energy solutions provider, specializing in high efficiency PV module comprehensive EPC solutions. We are working in Institutions,Residential Colonies,Office Buildings using Electricity Scale,Schools,Colleges, Universities, Government Offices, Giant Industries, Film Makers, Hotels, Restaurants, Cinema Halls, Terrace House Etc.",
+  aboutImage1: "/img/about/about4.jpeg",
+  aboutImage2: "/img/about/about6.jpg",
+  experienceYears: "10",
+};
 
 const AboutTwo = () => {
+  const [about, setAbout] = useState<AboutType>(defaultAboutTwo);
+
+  const loadContent = () => {
+    fetchAboutContent().then((data) => {
+      if (data) {
+        setAbout((prev) => ({
+          ...prev,
+          sectionSubtitle: data.sectionSubtitle || prev.sectionSubtitle,
+          mainHeading: data.mainHeading || prev.mainHeading,
+          description: data.description || prev.description,
+          aboutImage1: data.aboutImage1 || prev.aboutImage1,
+          aboutImage2: data.aboutImage2 || prev.aboutImage2,
+          experienceYears: data.experienceYears ? String(data.experienceYears).replace('+', '') : prev.experienceYears,
+        }));
+      }
+    });
+  };
+
+  useEffect(() => {
+    loadContent();
+    const interval = setInterval(loadContent, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section
       id="about"
@@ -24,7 +67,7 @@ const AboutTwo = () => {
                   </div>
                   <div className="content">
                     <h3>
-                      <span className="count">10</span>Years
+                      <span className="count">{about.experienceYears}</span>+
                     </h3>
                     <p>Of Experience</p>
                   </div>
@@ -32,10 +75,10 @@ const AboutTwo = () => {
                 <div
                   className="about-image-1 bg-cover wow slideLeft"
                   data-delay=".3"
-                  style={{ backgroundImage: 'url("/img/about/03.png")' }}
+                  style={{ backgroundImage: `url(${about.aboutImage1 || '/img/about/about4.jpeg'})` }}
                 >
                   <div className="about-image-2 wow slideUp" data-delay=".5">
-                    <img src="/img/about/04.jpg" alt="about-img" />
+                    <img src={about.aboutImage2 || '/img/about/about6.jpg'} alt="about-img" />
                   </div>
                 </div>
               </div>
@@ -43,19 +86,13 @@ const AboutTwo = () => {
             <div className="col-lg-6 mt-4 mt-lg-0">
               <div className="about-content">
                 <SectionTitle>
-                  <SectionTitle.SubTitle>About Us</SectionTitle.SubTitle>
+                  <SectionTitle.SubTitle>{about.sectionSubtitle}</SectionTitle.SubTitle>
                   <SectionTitle.Title>
-                    Sunspot Renewable Engineering
+                    {about.mainHeading}
                   </SectionTitle.Title>
                 </SectionTitle>
                 <p className="mt-3 mt-md-0 wow slideUp" data-delay=".5">
-                  SUNSPOT RENEWABLE ENGINEERING recognized leading solar energy
-                  solutions provider, specializing in high efficiency PV module
-                  comprehensive EPC solutions. We are working in
-                  Institutions,Residential Colonies,Office Buildings using
-                  Electricity Scale,Schools,Colleges, Universities, Government
-                  Offices, Giant Industries, Film Makers, Hotels, Restaurants,
-                  Cinema Halls, Terrace House Etc.
+                  {about.description}
                 </p>
                 <div className="about-icon-items">
                   <div className="icon-items wow slideUp" data-delay=".7">
@@ -86,21 +123,6 @@ const AboutTwo = () => {
                     </div>
                   </div>
                 </div>
-                {/* <div className="about-author">
-                  <div className="about-button wow slideUp" data-delay=".5">
-                    <Link to="/about" className="theme-btn">
-                      Explore More
-                      <i className="fa-solid fa-arrow-right-long" />
-                    </Link>
-                  </div>
-                  <div className="author-image wow slideUp" data-delay=".7">
-                    <img src="/img/about/author.png" alt="author-img" />
-                    <div className="content">
-                      <h6>Ronald Richards</h6>
-                      <p>Co, Founder</p>
-                    </div>
-                  </div>
-                </div> */}
               </div>
             </div>
           </div>

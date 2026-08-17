@@ -1,9 +1,39 @@
-import { teamMembersThreeData } from "@/db/teamMembersThreeData";
+import { useEffect, useState } from "react";
 import TeamCardTwo from "./teamCardTwo";
 import SectionTitle from "@/components/ui/sectionTitle";
 import { Link } from "react-router-dom";
+import { fetchTeamContent } from "@/lib/api";
 
 const TeamesThree = () => {
+  const [teamMembers, setTeamMembers] = useState<any[]>([]);
+
+  const loadTeam = () => {
+    fetchTeamContent().then((data) => {
+      if (data && data.length > 0) {
+        const formatted = data.map((m: any) => ({
+          id: m.id,
+          name: m.name,
+          role: m.role,
+          description: m.description,
+          image: m.image || '/img/team/hover-1.png',
+          socialLinks: [
+            { icon: 'fab fa-facebook-f', link: m.facebookLink || '#' },
+            { icon: 'fab fa-instagram', link: m.instagramLink || '#' },
+            { icon: 'fab fa-linkedin-in', link: m.linkedinLink || '#' },
+          ],
+          delay: m.delay || '.3',
+        }));
+        setTeamMembers(formatted);
+      }
+    });
+  };
+
+  useEffect(() => {
+    loadTeam();
+    const interval = setInterval(loadTeam, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section
       id="team"
@@ -37,7 +67,7 @@ const TeamesThree = () => {
               <div className="row align-items-center">
                 <div className="col-lg-4 col-md-5">
                   <div className="md-image">
-                    <img src="/img/team/hover-1.png" alt="Managing Director" />
+                    <img src="/img/team/team1.jpeg" alt="Managing Director" />
                     <div className="experience-badge">
                       <span className="number">10+</span>
                       <span className="text">Years Experience</span>
@@ -114,7 +144,7 @@ const TeamesThree = () => {
               </SectionTitle.Title>
             </SectionTitle>
           </div>
-          {teamMembersThreeData.slice(0, 6).map((member) => (
+          {teamMembers.slice(0, 6).map((member) => (
             <div
               key={member.id}
               className={`col-xl-3 col-lg-4 col-md-6 wow slideUp`}

@@ -148,14 +148,14 @@
 }
 
 .contact-info-area {
-    padding-top: 100px;
+    padding-top: 10px;
     @include flex;
     justify-content: space-between;
     border-bottom: 1px solid rgba(255, 255, 255, 0.20);;
 
     @include breakpoint (max-xl){
         flex-wrap: wrap;
-        gap: 40px;
+        gap: 20px;
         padding-top: 85px;
         justify-content: initial;
     }
@@ -178,7 +178,7 @@
 
         &:not(:last-child){
             border-right: 1px solid rgba(255, 255, 255, 0.20);
-            padding-right: 100px;
+            padding-right: 10px;
             height: 110px;
 
             @include breakpoint (max-xxl){
@@ -215,7 +215,7 @@
             }
 
             h3 {
-                font-size: 24px;
+                font-size: 20px;
                 color: $white;
                 
 

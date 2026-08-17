@@ -1,4 +1,5 @@
 import { useRef, useState } from "react";
+import { submitContactMessage } from "@/lib/api";
 
 const ContactForm = () => {
   const formRef = useRef<HTMLFormElement>(null);
@@ -12,29 +13,30 @@ const ContactForm = () => {
 
     try {
       const formData = new FormData(formRef.current!);
+      const name = formData.get("name") as string;
+      const email = formData.get("email") as string;
+      const messageText = formData.get("message") as string;
 
-      // Send to PHP backend
-      const response = await fetch("https://yourwebsite.com/send-contact.php", {
-        method: "POST",
-        body: formData,
+      const result = await submitContactMessage({
+        name,
+        email,
+        message: messageText,
       });
-
-      const result = await response.json();
 
       if (result.success) {
         setMessage({
-          text: result.message,
+          text: "Thank you! Your message has been received by our team.",
           type: "success",
         });
         formRef.current?.reset();
       } else {
         setMessage({
-          text: result.message,
+          text: result.error || "Failed to send message. Please try again.",
           type: "error",
         });
       }
     } catch (error) {
-      console.error("Error sending email:", error);
+      console.error("Error sending message:", error);
       setMessage({
         text: "Failed to send message. Please try again.",
         type: "error",

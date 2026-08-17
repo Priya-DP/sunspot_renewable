@@ -1,8 +1,57 @@
+import { useEffect, useState } from "react";
 import SectionTitle from "@/components/ui/sectionTitle";
 import AboutRoundedTextVideoPopup from "./aboutRoundedTextVideoPopup";
 import { Link } from "react-router-dom";
+import { fetchAboutContent } from "@/lib/api";
+
+interface AboutType {
+  sectionSubtitle: string;
+  mainHeading: string;
+  description: string;
+  aboutImage1: string;
+  aboutImage2: string;
+  experienceYears: string;
+  reliabilityTitle: string;
+  reliabilityDesc: string;
+  supportTitle: string;
+  supportDesc: string;
+}
+
+const defaultAbout: AboutType = {
+  sectionSubtitle: "About Us",
+  mainHeading: "Welcome To Sunspot Renewable Energy System",
+  description: "SUNSPOT Renewable Engineering is backed by a highly qualified team of engineers, designers, and certified project managers. With years of industry experience, our team delivers reliable solar solutions that build trust and long-term value for our clients.",
+  aboutImage1: "/img/about/about3.jpeg",
+  aboutImage2: "/img/about/about1.jpg",
+  experienceYears: "60+",
+  reliabilityTitle: "Reliability and Performance",
+  reliabilityDesc: "Proven solar solutions delivering consistent, high-efficiency performance.",
+  supportTitle: "BrightSun Support",
+  supportDesc: "Complete support from installation to after-sales service.",
+};
 
 const AboutOne = () => {
+  const [about, setAbout] = useState<AboutType>(defaultAbout);
+
+  const loadContent = () => {
+    fetchAboutContent().then((data) => {
+      if (data) {
+        setAbout((prev) => ({
+          ...prev,
+          ...data,
+          aboutImage1: data.aboutImage1 || prev.aboutImage1,
+          aboutImage2: data.aboutImage2 || prev.aboutImage2,
+        }));
+      }
+    });
+  };
+
+  useEffect(() => {
+    loadContent();
+    const interval = setInterval(loadContent, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
   return (
     <section id="about" className="about-section section-padding fix">
       <div className="container">
@@ -16,7 +65,7 @@ const AboutOne = () => {
                   </div>
                   <div className="content">
                     <h3>
-                      <span className="count">651</span>+
+                      <span className="count">{about.experienceYears ? String(about.experienceYears).replace('+', '') : '60'}</span>+
                     </h3>
                   </div>
                 </div>
@@ -24,10 +73,10 @@ const AboutOne = () => {
                 <div
                   className="about-image-1 bg-cover wow slideLeft"
                   data-delay=".3"
-                  style={{ backgroundImage: 'url("/img/about/01.jpg")' }}
+                  style={{ backgroundImage: `url(${about.aboutImage1 || '/img/about/about3.jpeg'})` }}
                 >
                   <div className="about-image-2 wow slideUp" data-delay=".5">
-                    <img src="/img/about/02.jpg" alt="about-img" />
+                    <img src={about.aboutImage2 || '/img/about/about1.jpg'} alt="about-img" />
                   </div>
                 </div>
               </div>
@@ -36,21 +85,15 @@ const AboutOne = () => {
               <div className="about-content">
                 <SectionTitle>
                   <SectionTitle.SubTitle>
-                    About Ussadasads
+                    {about.sectionSubtitle}
                   </SectionTitle.SubTitle>
                   <SectionTitle.Title>
                     {" "}
-                    Welcome To Sunspot Renewable Energy System
+                    {about.mainHeading}
                   </SectionTitle.Title>
                 </SectionTitle>
                 <p className="mt-3 mt-md-0 wow slideUp" data-delay=".5">
-                  <span className="font-extrabold text-black">
-                    SUNSPOT Renewable Engineering
-                  </span>{" "}
-                  is backed by a highly qualified team of engineers, designers,
-                  and certified project managers. With years of industry
-                  experience, our team delivers reliable solar solutions that
-                  build trust and long-term value for our clients.
+                  {about.description}
                 </p>
                 <div className="about-icon-items">
                   <div className="icon-items wow slideUp" data-delay=".7">
@@ -58,11 +101,8 @@ const AboutOne = () => {
                       <img src="/img/about/icon-2.svg" alt="icon-img" />
                     </div>
                     <div className="content">
-                      <h4>Reliability and Performance</h4>
-                      <p>
-                        Proven solar solutions delivering consistent,
-                        high-efficiency performance.
-                      </p>
+                      <h4>{about.reliabilityTitle}</h4>
+                      <p>{about.reliabilityDesc}</p>
                     </div>
                   </div>
                   <div className="icon-items wow slideUp" data-delay=".9">
@@ -70,11 +110,8 @@ const AboutOne = () => {
                       <img src="/img/about/icon-3.svg" alt="icon-img" />
                     </div>
                     <div className="content">
-                      <h4>BrightSun Support</h4>
-                      <p>
-                        Complete support from installation to after-sales
-                        service.
-                      </p>
+                      <h4>{about.supportTitle}</h4>
+                      <p>{about.supportDesc}</p>
                     </div>
                   </div>
                 </div>
@@ -84,15 +121,6 @@ const AboutOne = () => {
                       Explore More
                       <i className="fa-solid fa-arrow-right-long" />
                     </Link>
-                  </div>
-                  <div className="author-image wow slideUp" data-delay=".7">
-                    <img src="/img/about/author.png" alt="author-img" />
-                    <div className="content">
-                      <h6>
-                        MR.M KARUNAKARAN <span>B.E.,MBA.,</span>
-                      </h6>
-                      <p>Managing Director</p>
-                    </div>
                   </div>
                 </div>
               </div>
