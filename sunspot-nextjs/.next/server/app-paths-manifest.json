@@ -1,4 +1,27 @@
 {
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/auth/login/route": "app/api/auth/login/route.js",
+  "/about/page": "app/about/page.js",
+  "/api/auth/logout/route": "app/api/auth/logout/route.js",
+  "/contact/page": "app/contact/page.js",
+  "/api/upload/route": "app/api/upload/route.js",
+  "/login/page": "app/login/page.js",
+  "/page": "app/page.js",
   "/project/page": "app/project/page.js",
-  "/page": "app/page.js"
+  "/service/page": "app/service/page.js",
+  "/team/page": "app/team/page.js",
+  "/api/content/about/route": "app/api/content/about/route.js",
+  "/api/content/home/route": "app/api/content/home/route.js",
+  "/api/content/contact/route": "app/api/content/contact/route.js",
+  "/api/content/services/route": "app/api/content/services/route.js",
+  "/api/content/projects/route": "app/api/content/projects/route.js",
+  "/api/content/team/route": "app/api/content/team/route.js",
+  "/dashboard/about/page": "app/dashboard/about/page.js",
+  "/dashboard/contact/page": "app/dashboard/contact/page.js",
+  "/dashboard/home/page": "app/dashboard/home/page.js",
+  "/dashboard/messages/page": "app/dashboard/messages/page.js",
+  "/dashboard/projects/page": "app/dashboard/projects/page.js",
+  "/dashboard/services/page": "app/dashboard/services/page.js",
+  "/dashboard/team/page": "app/dashboard/team/page.js",
+  "/dashboard/page": "app/dashboard/page.js"
 }
