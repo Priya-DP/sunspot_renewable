@@ -1,1 +1,7 @@
-{}
+{
+  "/api/content/home/route": "app/api/content/home/route.js",
+  "/api/content/team/route": "app/api/content/team/route.js",
+  "/api/content/about/route": "app/api/content/about/route.js",
+  "/api/content/services/route": "app/api/content/services/route.js",
+  "/api/content/projects/route": "app/api/content/projects/route.js"
+}
